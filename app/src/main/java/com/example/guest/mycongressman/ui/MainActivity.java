@@ -18,6 +18,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -60,20 +61,8 @@ public class MainActivity extends AppCompatActivity {
                     try {
                         JSONObject congressInfo = new JSONObject(jsonData);
                         JSONArray results = congressInfo.getJSONArray("results");
-
-                        Congressman[] congressmans = new Congressman[results.length()];
-
-                        for (int i = 0; i < results.length(); i++) {
-                            JSONObject jsonCongressman = results.getJSONObject(i);
-                            Congressman congressman = new Congressman();
-
-                            congressman.setChamber(jsonCongressman.getString("chamber"));
-                            congressman.setFirstName(jsonCongressman.getString("first_name"));
-                            congressman.setLastName(jsonCongressman.getString("last_name"));
-
-                            congressmans[i] = congressman;
-                            String s = "s";
-                        }
+                        ArrayList<Congressman> congressmans = Congressman.fromJson(results);
+                        String s = "s";
 
                     } catch (JSONException e) {
                         e.printStackTrace();
