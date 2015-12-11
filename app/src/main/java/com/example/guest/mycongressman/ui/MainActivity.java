@@ -7,6 +7,7 @@ import android.widget.EditText;
 
 import com.example.guest.mycongressman.Congressman;
 import com.example.guest.mycongressman.R;
+import com.example.guest.mycongressman.adapters.CongressmanAdapter;
 import com.squareup.okhttp.Call;
 import com.squareup.okhttp.Callback;
 import com.squareup.okhttp.OkHttpClient;
@@ -34,7 +35,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
-
     }
 
     @OnClick(R.id.submitButton)
@@ -62,6 +62,7 @@ public class MainActivity extends AppCompatActivity {
                         JSONObject congressInfo = new JSONObject(jsonData);
                         JSONArray results = congressInfo.getJSONArray("results");
                         ArrayList<Congressman> congressmans = Congressman.fromJson(results);
+                        CongressmanAdapter adapter = new CongressmanAdapter(MainActivity.this, congressmans);
                         String s = "s";
 
                     } catch (JSONException e) {

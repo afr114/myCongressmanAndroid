@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:tools="http://schemas.android.com/tools"
+                android:layout_width="match_parent"
+                android:paddingLeft="64dp"
+                android:paddingRight="32dp"
+                android:paddingTop="4dp"
+                android:layout_height="wrap_content"
+                tools:background="#134E5E">
+
+<TextView
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="Steve "
+    android:id="@+id/firstNameLabel"
+    android:layout_alignParentTop="true"
+    android:textColor="@android:color/white"/>
+
+<TextView
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="Israel"
+    android:id="@+id/lastNameLabel"
+    android:layout_alignParentTop="true"
+    android:layout_toRightOf="@+id/firstNameLabel"
+    android:layout_toEndOf="@+id/firstNameLabel"
+    android:textColor="@android:color/white"/>
+
+<TextView
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="House"
+    android:id="@+id/houseSenatelabel"
+    android:layout_marginLeft="17dp"
+    android:layout_marginStart="17dp"
+    android:layout_alignParentTop="true"
+    android:layout_toRightOf="@+id/lastNameLabel"
+    android:layout_toEndOf="@+id/lastNameLabel"
+    android:textColor="#ffffff"/>
+</RelativeLayout>
