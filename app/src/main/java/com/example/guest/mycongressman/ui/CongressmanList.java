@@ -1,8 +1,11 @@
 package com.example.guest.mycongressman.ui;
 
+import android.app.ListActivity;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.widget.Adapter;
+import android.widget.ListView;
 
 import com.example.guest.mycongressman.Congressman;
 import com.example.guest.mycongressman.R;
@@ -20,20 +23,29 @@ import org.json.JSONObject;
 import java.io.IOException;
 import java.util.ArrayList;
 
-public class CongressmanList extends AppCompatActivity {
+import butterknife.Bind;
+import butterknife.ButterKnife;
+
+public class CongressmanList extends ListActivity {
 
     private String mZipCode;
+    private CongressmanAdapter mAdapter;
+    private ListView mListView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_congressman_list);
+        ButterKnife.bind(this);
+
+        mListView = (ListView) findViewById(android.R.id.list);
 
         Intent intent = getIntent();
         mZipCode = intent.getStringExtra("KEY_ZIP_CODE");
 
         congressmanApiCall(mZipCode);
-        String S = "s";
+//        CongressmanAdapter test = mAdapter;
+//        setListAdapter(mAdapter);
     }
 
 
@@ -52,18 +64,24 @@ public class CongressmanList extends AppCompatActivity {
 
             @Override
             public void onResponse(Response response) throws IOException {
-                String jsonData = response.body().string();
+                final String jsonData = response.body().string();
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
 
-                try {
-                    JSONObject congressInfo = new JSONObject(jsonData);
-                    JSONArray results = congressInfo.getJSONArray("results");
-                    ArrayList<Congressman> congressmans = Congressman.fromJson(results);
-                    CongressmanAdapter adapter = new CongressmanAdapter(CongressmanList.this, congressmans);
-                    String S = "s";
+                        try {
+                            JSONObject congressInfo = new JSONObject(jsonData);
+                            JSONArray results = congressInfo.getJSONArray("results");
+                            ArrayList<Congressman> congressmans = Congressman.fromJson(results);
+                            mAdapter = new CongressmanAdapter(CongressmanList.this, congressmans);
+                            mListView.setAdapter(mAdapter);
 
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                });
+
 
             }
         });

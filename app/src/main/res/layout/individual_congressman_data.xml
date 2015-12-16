@@ -21,20 +21,22 @@
     android:layout_height="wrap_content"
     android:text="Israel"
     android:id="@+id/lastNameLabel"
+    android:textColor="@android:color/white"
+    android:layout_marginLeft="19dp"
+    android:layout_marginStart="19dp"
     android:layout_alignParentTop="true"
     android:layout_toRightOf="@+id/firstNameLabel"
-    android:layout_toEndOf="@+id/firstNameLabel"
-    android:textColor="@android:color/white"/>
+    android:layout_toEndOf="@+id/firstNameLabel" />
 
 <TextView
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:text="House"
     android:id="@+id/houseSenatelabel"
-    android:layout_marginLeft="17dp"
-    android:layout_marginStart="17dp"
+    android:textColor="#ffffff"
+    android:layout_marginLeft="43dp"
+    android:layout_marginStart="43dp"
     android:layout_alignParentTop="true"
     android:layout_toRightOf="@+id/lastNameLabel"
-    android:layout_toEndOf="@+id/lastNameLabel"
-    android:textColor="#ffffff"/>
+    android:layout_toEndOf="@+id/lastNameLabel" />
 </RelativeLayout>

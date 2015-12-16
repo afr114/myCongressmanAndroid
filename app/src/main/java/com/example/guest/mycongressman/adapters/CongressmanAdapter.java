@@ -18,9 +18,12 @@ import java.util.ArrayList;
  */
 public class CongressmanAdapter extends ArrayAdapter<Congressman> {
 
-
+    ArrayList<Congressman> mCongressmans;
+    Context mContext;
     public CongressmanAdapter(Context context, ArrayList<Congressman> congressmans) {
-        super(context, R.layout.activity_congressman, congressmans);
+        super(context, 0, congressmans);
+        mContext = context;
+        mCongressmans = congressmans;
     }
 
 
@@ -28,11 +31,10 @@ public class CongressmanAdapter extends ArrayAdapter<Congressman> {
     public View getView(int position, View convertView, ViewGroup parent) {
         ViewHolder holder;
 
-        Congressman congressman = getItem(position);
+        Congressman congressman = mCongressmans.get(position);
 
         if (convertView == null) {
-            LayoutInflater inflater = LayoutInflater.from(getContext());
-            convertView = inflater.inflate(R.layout.activity_congressman, null);
+            convertView = LayoutInflater.from(getContext()).inflate(R.layout.individual_congressman_data, parent, false);
             holder = new ViewHolder();
             holder.firstNameLabel = (TextView) convertView.findViewById(R.id.firstNameLabel);
             holder.lastNameLabel = (TextView) convertView.findViewById(R.id.lastNameLabel);
