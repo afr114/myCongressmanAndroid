@@ -4,4 +4,5 @@
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
     <string name="no_data_source">No Data To Be Displayed</string>
+    <string name="zip_code_warning">Please insert a valid zip code</string>
 </resources>
